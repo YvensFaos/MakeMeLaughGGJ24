@@ -19,6 +19,11 @@ public class ReceptorController : MonoBehaviour
         AssessUtils.CheckRequirement(ref body, this);
     }
 
+    private void Start()
+    {
+        MainFrame.GetSingleton().AddNewReceptor(this);
+    }
+
     private void Update()
     {
         commandKeys.ForEach(keyDirection =>
@@ -32,5 +37,16 @@ public class ReceptorController : MonoBehaviour
             if (!Input.GetKeyUp(keyDirection.One)) return;
             notifiers.ForEach(n => n.NotifyMeUp(gameObject));
         });
+    }
+
+    public override string ToString()
+    {
+        var commands = "";
+        commandKeys.ForEach(commandKey =>
+        {
+            commands += $"{commandKey.One.ToString()}  | ";
+        });
+        commands = commands.Substring(0, commands.Length - 4);
+        return commands;
     }
 }
