@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Utils;
 
-public class MainFrame : MonoBehaviour
+public class MainFrame : Singleton<MainFrame>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   [SerializeField]
+   private int dataCollected;
+   
+   public void CollectData(DataPackageController data)
+   {
+      dataCollected++;
+   }
 }

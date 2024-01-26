@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ReceptorMaterial
+  m_Name: DataMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 3e695dd2ba0a64ebb8bad4e9876bd417, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,14 +37,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _InterpolationTime: 2
+    - _InterpolationTime: 0.1
     - _Metal: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 1
     m_Colors:
-    - _ColorA: {r: 0.19381869, g: 0.6415094, b: 0, a: 1}
-    - _ColorB: {r: 0.15035377, g: 0.8018868, b: 0, a: 1}
+    - _ColorA: {r: 0.9630041, g: 0.3537736, b: 1, a: 1}
+    - _ColorB: {r: 0.5943396, g: 0.047659315, b: 0.55682236, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8134297554490325741
 MonoBehaviour:
