@@ -205,6 +205,6 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 69176f70986f84cc29f531dd006153cb, type: 2}
   type: 0
   property: _ColorB
-  changeToColor: {r: 1, g: 0, b: 0, a: 1}
+  changeToColor: {r: 1, g: 1, b: 1, a: 1}
   changeToFloat: 0
   changeToInt: 0
