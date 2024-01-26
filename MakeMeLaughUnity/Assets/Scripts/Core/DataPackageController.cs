@@ -21,6 +21,12 @@ public class DataPackageController : AgnosticCollisionSolver
     {
         body.velocity = direction * velocity;
     }
+
+    public void Initialize(Vector3 newDirection, float newVelocity)
+    {
+        direction = newDirection;
+        velocity = newVelocity;
+    }
     
     protected override void Solve(GameObject collidedWith)
     {

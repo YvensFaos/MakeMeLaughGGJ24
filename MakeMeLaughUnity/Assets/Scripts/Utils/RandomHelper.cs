@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Utils
 {
@@ -8,6 +11,28 @@ namespace Utils
         public static T GetRandomFromList(List<T> list)
         {
             return list[Random.Range(0, list.Count)];
+        }
+    }
+
+    public static class RandomChancePair<T>
+    {
+        public static T GetRandomFromChanceList(List<Tuple<T, float>> pairs, T defaultResult)
+        {
+            var total = pairs.Sum(p => p.Item2);
+            var current = 0.0f;
+            var chance = Random.Range(0.0f, total);
+
+            foreach (var pair in pairs)
+            {
+                if (chance <= pair.Item2 + current)
+                {
+                    return pair.Item1;
+                }
+
+                current += pair.Item2;
+            }
+
+            return defaultResult;
         }
     }
 
