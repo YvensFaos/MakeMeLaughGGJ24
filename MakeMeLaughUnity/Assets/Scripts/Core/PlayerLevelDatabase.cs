@@ -39,6 +39,11 @@ namespace Core
                 DebugUtils.DebugLogMsg($"[{i}]: {playerLevelScore[i].One.name}.");
             }
         }
+
+        public void ResetStack()
+        {
+            InitiatePlayerScoreStack();
+        }
         
         [Button("Sort")]
         private void Sort()

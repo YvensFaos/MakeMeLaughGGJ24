@@ -75,6 +75,7 @@ public class MainFrame : WeakSingleton<MainFrame>
 
    private void Start()
    {
+      playerLevelDatabase.ResetStack();
       playerLevel = playerLevelDatabase.GetCurrentPlayerLevel(dataCollected);
       playerLevelText.text = $"LVL: {playerLevel.One.name}";
       dataText.text = $"<b>D:</b>{currentData}";
@@ -111,6 +112,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       void RemoveReceptor(ReceptorController receptor)
       {
          currentReceptors.Remove(receptor);
+         impulseSource.GenerateImpulse();
          Destroy(receptor.gameObject);
          
          Console().AddConsoleLine("+___+");
