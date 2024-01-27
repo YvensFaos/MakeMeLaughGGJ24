@@ -2589,8 +2589,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167932877}
-  - component: {fileID: 1167932878}
   - component: {fileID: 1167932879}
+  - component: {fileID: 1167932878}
   - component: {fileID: 1167932880}
   m_Layer: 0
   m_Name: OS
@@ -2678,7 +2678,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
     - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
   defaultEvent: {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
-  interval: {x: 3, y: 5}
+  interval: {x: 5, y: 8}
   onStart: 1
   executing: 0
   spawnArea: {fileID: 1167932878}
@@ -2736,7 +2736,7 @@ MonoBehaviour:
   currentReceptorCost: 4
   increaseCostChance: 25
   dataReceptorRatio: 0
-  keyControllerAmount: {x: 1, y: 3}
+  keyControllerAmount: {x: 1, y: 1}
   currentReceptors: []
   console: {fileID: 1890526035}
   playerLevelText: {fileID: 825464015}

@@ -100,7 +100,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       
       for (var i = 0; i < amount; i++)
       {
-         if (dataReceptorRatio <= 1.0f) return false;
+         if (dataReceptorRatio < 1.0f) return false;
          
          currentData -= currentReceptorCost;
          if (RandomChanceUtils.GetChance(increaseCostChance))
