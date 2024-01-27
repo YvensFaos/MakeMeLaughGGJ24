@@ -11,6 +11,8 @@ public class DataPackageController : AgnosticCollisionSolver
     private float velocity;
     [SerializeField] 
     private LayerMask receptorLayers;
+    [SerializeField] 
+    private int dataValue;
 
     private void Awake()
     {
@@ -22,10 +24,11 @@ public class DataPackageController : AgnosticCollisionSolver
         body.velocity = direction * velocity;
     }
 
-    public void Initialize(Vector3 newDirection, float newVelocity)
+    public void Initialize(Vector3 newDirection, float newVelocity, int newDataValue = 1)
     {
         direction = newDirection;
         velocity = newVelocity;
+        dataValue = newDataValue;
     }
     
     protected override void Solve(GameObject collidedWith)
@@ -34,4 +37,6 @@ public class DataPackageController : AgnosticCollisionSolver
         MainFrame.GetSingleton().CollectData(this);
         Destroy(gameObject);
     }
+
+    public int DataValue() => dataValue;
 }

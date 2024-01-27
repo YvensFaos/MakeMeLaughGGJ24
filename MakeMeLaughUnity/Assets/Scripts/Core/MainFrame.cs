@@ -8,6 +8,8 @@ public class MainFrame : WeakSingleton<MainFrame>
    private int dataCollected;
    [SerializeField]
    private List<ReceptorController> currentReceptors;
+   [SerializeField] 
+   private ConsoleController console;
 
    public void AddNewReceptor(ReceptorController newReceptor)
    {
@@ -16,7 +18,8 @@ public class MainFrame : WeakSingleton<MainFrame>
    
    public void CollectData(DataPackageController data)
    {
-      dataCollected++;
+      dataCollected += data.DataValue();
+      console.AddConsoleLine($"Data: {dataCollected}");
    }
 
    public string GetListOfReceptorCommands()

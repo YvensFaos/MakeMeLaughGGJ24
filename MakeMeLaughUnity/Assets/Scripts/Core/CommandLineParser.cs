@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class CommandLineParser : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject consoleObject;
+    [SerializeField]
+    private ConsoleController console;
     [SerializeField] 
     private TMP_Text consoleInput;
-    [SerializeField]
-    private TMP_Text consoleOutput;
     
     public void GetCommand(string command)
     {
-        consoleObject.SetActive(true);
+        console.gameObject.SetActive(true);
         AddConsoleLine(command,">");
         ParseCommand(command);
         consoleInput.text = "";
@@ -49,6 +47,6 @@ public class CommandLineParser : MonoBehaviour
 
     private void AddConsoleLine(string line, string start = "")
     {
-        consoleOutput.text += $"\r\n\r\n{start}{line}";
+        console.AddConsoleLine(line, start);
     }
 }

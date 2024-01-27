@@ -1158,9 +1158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf67070f4a4e42de9944bb64e213036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consoleObject: {fileID: 1890526029}
+  console: {fileID: 1890526035}
   consoleInput: {fileID: 1516684151}
-  consoleOutput: {fileID: 2129505862}
 --- !u!114 &473835223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2288,6 +2287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataCollected: 0
   currentReceptors: []
+  console: {fileID: 1890526035}
 --- !u!4 &1195337147
 Transform:
   m_ObjectHideFlags: 0
@@ -3790,6 +3790,7 @@ GameObject:
   - component: {fileID: 1890526031}
   - component: {fileID: 1890526034}
   - component: {fileID: 1890526033}
+  - component: {fileID: 1890526035}
   m_Layer: 5
   m_Name: Console
   m_TagString: Untagged
@@ -3924,6 +3925,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &1890526035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890526029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288f3a3e2dace4c92a811b9dbb8ad033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleOutput: {fileID: 2129505862}
 --- !u!1 &1894906786
 GameObject:
   m_ObjectHideFlags: 0
