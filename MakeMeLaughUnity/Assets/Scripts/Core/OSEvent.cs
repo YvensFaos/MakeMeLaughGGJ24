@@ -29,8 +29,13 @@ namespace Core
         [SerializeField, ShowIf("generateRandomComment")]
         private List<string> possibleComments;
 
+        [Header("Antivirus")]
+        [SerializeField] 
+        private bool generateRandomAntivirus;
+        [SerializeField, ShowIf("generateRandomAntivirus")]
+        private AntivirusController antivirus;        
         
-        //TODO add virus and issues
+        //TODO add issues
         //TODO add pop up
         //TODO add screen effect
 
@@ -58,6 +63,17 @@ namespace Core
             if (generateRandomComment)
             {
                 MainFrame.GetSingleton().Console().AddConsoleLine(RandomHelper<string>.GetRandomFromList(possibleComments), "?");
+            }
+            
+            if (generateRandomAntivirus)
+            {
+                var position = RandomPointUtils.GetRandomPointWithBox2D(spawnArea);
+                var antivirusController = Instantiate(antivirus, new Vector3(position.x, position.y, 0.0f), Quaternion.identity);
+                antivirusController.transform.SetParent(spawnParent);
+                var randomDirection = RandomPointUtils.GenerateRandomDirection2D();
+                var randomDirectionVec3 = new Vector3(randomDirection.x, randomDirection.y, 0.0f);
+                antivirusController.Initialize(randomDirectionVec3, Random.Range(0.5f, 2.0f));
+                MainFrame.GetSingleton().Console().AddConsoleLine("Antivirus Detected.", "#");
             }
         }
 

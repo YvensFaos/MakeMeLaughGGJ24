@@ -88,7 +88,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       currentReceptors.Add(newReceptor);
    }
 
-   public void DestroyReceptor(ReceptorController lostReceptor)
+   public void DestroyReceptor(ReceptorController lostReceptor, int threatDamage = 1)
    {
       void GameOverConsoleText()
       {
@@ -130,7 +130,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       }
       else
       {
-         currentThreatLevel--;
+         currentThreatLevel -= threatDamage;
          threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
          if (currentThreatLevel > 0) return;
 
