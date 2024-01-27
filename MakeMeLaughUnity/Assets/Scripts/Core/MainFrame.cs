@@ -1,22 +1,26 @@
 using System.Collections.Generic;
 using Cinemachine;
 using Core;
+using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 public class MainFrame : WeakSingleton<MainFrame>
 {
    [Header("Player Data")]
    [SerializeField, ReadOnly] 
-   private PlayerLevelSO playerLevel;
+   private PlayerLevelScorePair playerLevel;
    [SerializeField, ReadOnly]
    private int dataCollected;
    [SerializeField]
    private int currentData;
-
-   [SerializeField] private float threatLevel;
+   [SerializeField] 
+   private float threatLevel;
+   [SerializeField]
+   private float levelUpRatio;
 
    [Header("Controls")] 
    [SerializeField]
@@ -47,6 +51,10 @@ public class MainFrame : WeakSingleton<MainFrame>
    private Transform spawnParent;
    [SerializeField] 
    private GameObject overlayPanel;
+   [SerializeField] 
+   private TMP_Text dataText;
+   [SerializeField] 
+   private Image levelProgressImage;
 
    [Header("Databases")] 
    [SerializeField] 
@@ -56,10 +64,14 @@ public class MainFrame : WeakSingleton<MainFrame>
    [SerializeField] 
    private ReceptorKeyInputDatabase keyInputDatabase;
 
+   private Tweener playerLevelTweener;
+
    private void Start()
    {
       playerLevel = playerLevelDatabase.GetCurrentPlayerLevel(dataCollected);
-      playerLevelText.text = $"LVL: {playerLevel.name}";
+      playerLevelText.text = $"LVL: {playerLevel.One.name}";
+      dataText.text = $"<b>D:</b>{currentData}";
+      levelProgressImage.fillAmount = 0.0f;
    }
 
    public void AddNewReceptor(ReceptorController newReceptor)
@@ -70,10 +82,19 @@ public class MainFrame : WeakSingleton<MainFrame>
    public void CollectData(DataPackageController data)
    {
       dataCollected += data.DataValue();
+      levelUpRatio = (float) dataCollected / playerLevel.Two;
+      
+      playerLevelTweener?.Kill();
+      playerLevelTweener = levelProgressImage.DOFillAmount(Mathf.Clamp01(levelUpRatio), 0.2f);   
+      if (levelUpRatio >= 1.0f)
+      {
+         playerLevel = playerLevelDatabase.GetCurrentPlayerLevel(dataCollected);   
+      }
+
       currentData += data.DataValue();
+      dataText.text = $"<b>D:</b>{currentData}";
       dataReceptorRatio = (float) currentData / currentReceptorCost;
       loaderController.UpdateRatio(dataReceptorRatio);
-      console.AddConsoleLine($"Data: {currentData}");
    }
 
    public string GetListOfReceptorCommands()
@@ -105,14 +126,14 @@ public class MainFrame : WeakSingleton<MainFrame>
          if (dataReceptorRatio < 1.0f) return false;
          
          currentData -= currentReceptorCost;
+         dataText.text = $"<b>D:</b>{currentData}";
          if (RandomChanceUtils.GetChance(increaseCostChance))
          {
             currentReceptorCost = (int)(currentReceptorCost * receptorCostMultiplier);
          }
          dataReceptorRatio = (float) currentData / currentReceptorCost;
          loaderController.UpdateRatio(dataReceptorRatio);
-         console.AddConsoleLine($"Data: {currentData}", "$");
-         
+
          impulseSource.GenerateImpulse();
          SpawnReceptor();
          generatedAmount++;
@@ -146,6 +167,6 @@ public class MainFrame : WeakSingleton<MainFrame>
    }
    
    public int ReceptorCount() => currentReceptors.Count;
-   public PlayerLevelSO CurrentPlayerLevel() => playerLevel;
+   public PlayerLevelSO CurrentPlayerLevel() => playerLevel.One;
    public ConsoleController Console() => console;
 }

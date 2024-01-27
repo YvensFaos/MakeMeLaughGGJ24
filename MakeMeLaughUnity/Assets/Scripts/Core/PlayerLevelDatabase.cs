@@ -11,16 +11,21 @@ namespace Core
         [SerializeField]
         private List<PlayerLevelScorePair> playerLevelScore;
 
-        public PlayerLevelSO GetCurrentPlayerLevel(int maxScore)
+        public PlayerLevelScorePair GetCurrentPlayerLevel(int maxScore)
         {
-            foreach (var levelScorePair in playerLevelScore.Where(levelScorePair => levelScorePair.Two <= maxScore))
+            if (maxScore >= playerLevelScore[^1].Two && playerLevelScore[^1].IsFinalLevel())
             {
-                return levelScorePair.One;
+                return playerLevelScore[^1];
+            }
+            
+            foreach (var levelScorePair in playerLevelScore.Where(levelScorePair => maxScore < levelScorePair.Two ))
+            {
+                return levelScorePair;
             }
 
-            return playerLevelScore[0].One;
+            return playerLevelScore[0];
         }
-
+        
         [Button("Sort")]
         private void Sort()
         {
