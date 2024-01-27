@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -35,11 +36,18 @@ namespace Core
         [SerializeField, ShowIf("generateRandomAntivirus")]
         private AntivirusController antivirus;        
         
+        [Header("Distort View")]
+        [SerializeField] 
+        private bool distortView;
+        [SerializeField, ShowIf("distortView")]
+        private Material distortToMaterial;
+        [SerializeField, ShowIf("distortView")]
+        private float distortionDuration;
+        
         //TODO add issues
         //TODO add pop up
-        //TODO add screen effect
 
-        public void Execute(BoxCollider2D spawnArea, Transform spawnParent)
+        public void Execute(BoxCollider2D spawnArea, Transform spawnParent, MonoBehaviour caller)
         {
             if (generateDataSpawner)
             {
@@ -75,6 +83,21 @@ namespace Core
                 antivirusController.Initialize(randomDirectionVec3, Random.Range(0.5f, 2.0f));
                 MainFrame.GetSingleton().Console().AddConsoleLine("Antivirus Detected.", "#");
             }
+
+            if (distortView)
+            {
+                caller.StartCoroutine(DistortedMaterialCoroutine());
+            }
+        }
+
+        private IEnumerator DistortedMaterialCoroutine()
+        {
+            var mainFrame = MainFrame.GetSingleton();
+            var material = mainFrame.MainMaterial();
+            material.CopyPropertiesFromMaterial(distortToMaterial);
+            mainFrame.Console().AddConsoleLine($"Malfunction detected: {name}.", "#");
+            yield return new WaitForSeconds(distortionDuration);
+            mainFrame.ResetMainMaterial();
         }
 
         public int GetChance() => chance;

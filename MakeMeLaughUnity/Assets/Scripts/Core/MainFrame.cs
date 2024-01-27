@@ -85,9 +85,17 @@ public class MainFrame : WeakSingleton<MainFrame>
       currentThreatLevel = threatLevel;
       threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
       
+      ResetMainMaterial();
+   }
+
+   public void ResetMainMaterial()
+   {
       mainGameMaterial.SetColor("_ScreenColor", Color.white);
       mainGameMaterial.SetColor("_AdditiveColor", Color.black);
       mainGameMaterial.SetInt("_ByPass", 0);
+      mainGameMaterial.SetFloat("_NoiseFactor", 0.0f);
+      mainGameMaterial.SetFloat("_NoiseScale", 0.0f);
+      mainGameMaterial.SetFloat("_NoiseTimeFactor", 0.0f);
    }
 
    public void AddNewReceptor(ReceptorController newReceptor)

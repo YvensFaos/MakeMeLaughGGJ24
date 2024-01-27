@@ -57,7 +57,7 @@ namespace Core
             {
                 var tupleList = playerLevelOSEventListPair.TupleList();
                 var osEvent = RandomChancePair<OSEvent>.GetRandomFromChanceList(tupleList, defaultEvent);
-                osEvent.Execute(spawnArea, spawnParent);
+                osEvent.Execute(spawnArea, spawnParent, this);
             }
             else
             {
