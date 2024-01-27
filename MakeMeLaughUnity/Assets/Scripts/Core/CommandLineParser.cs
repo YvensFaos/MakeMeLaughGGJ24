@@ -19,6 +19,8 @@ public class CommandLineParser : MonoBehaviour
 
     private void ParseCommand(string command)
     {
+        command = command.Trim();
+        
         if (command.Equals("-g"))
         {
             //Open Gate

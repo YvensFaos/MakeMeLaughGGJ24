@@ -78,7 +78,7 @@ namespace Utils
                 Random.Range(bounds.min.y, bounds.max.y));
         }
 
-        public static Vector3 GetRandomPointWithinCircleCollider2(CircleCollider2D circleCollider)
+        public static Vector3 GetRandomPointWithinCircleCollider2D(CircleCollider2D circleCollider)
         {
             var randomPoint2D = (Vector2)circleCollider.bounds.center + Random.insideUnitCircle * circleCollider.radius;
             return new Vector3(randomPoint2D.x, randomPoint2D.y, 0.0f);
@@ -88,6 +88,12 @@ namespace Utils
         {
             var angle = Random.Range(0f, Mathf.PI * 2f);
             return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        }
+        
+        public static Vector3 GenerateRandomDirection2Din3D()
+        {
+            var angle = Random.Range(0f, Mathf.PI * 2f);
+            return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0.0f);
         }
     }
 }

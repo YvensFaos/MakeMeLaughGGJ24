@@ -332,6 +332,7 @@ MonoBehaviour:
   receptorLayers:
     serializedVersion: 2
     m_Bits: 256
+  dataValue: 0
 --- !u!114 &8475844180362214883
 MonoBehaviour:
   m_ObjectHideFlags: 0

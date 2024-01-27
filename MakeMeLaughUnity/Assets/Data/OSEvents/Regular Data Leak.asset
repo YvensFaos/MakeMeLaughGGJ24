@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120d6e09d64c487d9fa056e96f45699b, type: 3}
+  m_Name: Regular Data Leak
+  m_EditorClassIdentifier: 
+  chance: 50
+  generateDataSpawner: 0
+  dataSpawner: {fileID: 0}
+  generateRandomData: 1
+  data: {fileID: 3788921121010629716, guid: 4dd079379e77a44cda3468e082d491fa, type: 3}

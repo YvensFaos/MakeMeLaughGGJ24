@@ -8,7 +8,7 @@ public class ReceptorController : MonoBehaviour
     [SerializeField]
     private List<KeyCodeDirectionPair> commandKeys;
     [SerializeField]
-    private float force = 10;
+    private float force = 20;
     [SerializeField] 
     private Rigidbody body;
     [SerializeField] 
@@ -22,6 +22,15 @@ public class ReceptorController : MonoBehaviour
     private void Start()
     {
         MainFrame.GetSingleton().AddNewReceptor(this);
+    }
+
+    public void Initialize(List<KeyCode> keys)
+    {
+        commandKeys = new List<KeyCodeDirectionPair>();
+        keys.ForEach(key =>
+        {
+            commandKeys.Add(new KeyCodeDirectionPair(key, RandomPointUtils.GenerateRandomDirection2Din3D()));
+        });
     }
 
     private void Update()
@@ -46,7 +55,7 @@ public class ReceptorController : MonoBehaviour
         {
             commands += $"{commandKey.One.ToString()}  | ";
         });
-        commands = commands.Substring(0, commands.Length - 4);
+        commands = commands[..^4];
         return commands;
     }
 }
