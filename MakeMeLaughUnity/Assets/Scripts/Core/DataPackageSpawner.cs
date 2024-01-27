@@ -38,12 +38,12 @@ public class DataPackageSpawner : MonoBehaviour
         }
     }
 
-    public void StartSpawning()
+    private void StartSpawning()
     {
         StartCoroutine(SpawnCoroutine());
     }
 
-    public void ResetSpawning()
+    private void ResetSpawning()
     {
         internalCount = count;
     }
