@@ -2736,7 +2736,7 @@ MonoBehaviour:
   currentReceptorCost: 4
   increaseCostChance: 25
   dataReceptorRatio: 0
-  keyControllerAmount: {x: 2, y: 4}
+  keyControllerAmount: {x: 1, y: 3}
   currentReceptors: []
   console: {fileID: 1890526035}
   playerLevelText: {fileID: 825464015}
@@ -2744,6 +2744,7 @@ MonoBehaviour:
   impulseSource: {fileID: 1195337149}
   spawnArea: {fileID: 1195337148}
   spawnParent: {fileID: 1534579606}
+  overlayPanel: {fileID: 1821585009}
   playerLevelDatabase: {fileID: 11400000, guid: ad441804e7acc487e852f56fe0088492, type: 2}
   receptorPrefab: {fileID: 4838287161914812917, guid: 9960a9f3773c34373b6bbab939811666, type: 3}
   keyInputDatabase: {fileID: 11400000, guid: eefd9440c676e47549ab2da574cedfc6, type: 2}
@@ -6046,8 +6047,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0

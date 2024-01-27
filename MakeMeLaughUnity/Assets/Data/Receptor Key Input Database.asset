@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc276669ace049378fe66e6033343743, type: 3}
   m_Name: Receptor Key Input Database
   m_EditorClassIdentifier: 
-  keyInputs: 310000003200000061000000640000007700000073000000140100001301000011010000120100006a0000006c0000006b00000069000000300100002f010000
+  keyInputs:
+  - one: 273
+    two: 274
+  - one: 276
+    two: 275
+  - one: 257
+    two: 258
+  - one: 97
+    two: 100
+  - one: 119
+    two: 115
+  - one: 106
+    two: 108
+  - one: 105
+    two: 107
+  - one: 54
+    two: 55

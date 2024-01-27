@@ -20,30 +20,44 @@ public class CommandLineParser : MonoBehaviour
     private void ParseCommand(string command)
     {
         command = command.Trim();
-        
-        if (command.Equals("-g"))
+
+        switch (command)
         {
-            //Open Gate
-            AddConsoleLine("Try to open gate.","");
-        }
-        else if (command.StartsWith("-c"))
-        {
-            //Spawn Receptors
-            var regex = new Regex(@"\d+");
-            var match = regex.Match(command);
-            if (match.Success)
+            case "-g":
+                //Open Gate
+                AddConsoleLine("Try to open gate.");
+                break;
+            case "-h":
+                MainFrame.GetSingleton().ToggleOverlayPanel();
+                break;
+            default:
             {
-                var count = int.Parse(match.Value);
-                AddConsoleLine($"Spawn {count} receptors.","");
+                if (command.StartsWith("-c"))
+                {
+                    //Spawn Receptors
+                    var regex = new Regex(@"\d+");
+                    var match = regex.Match(command);
+                    if (match.Success)
+                    {
+                        var count = int.Parse(match.Value);
+                        AddConsoleLine($"Spawn {count} receptors.","");
+                        var success = MainFrame.GetSingleton().TrySpawnReceptor(count, out var generated);
+                
+                        if(success) AddConsoleLine($"return 0;","$");
+                        else AddConsoleLine($"return -{Random.Range(0, 6000)};","!");
+                    }
+                    else
+                    {
+                        AddConsoleLine($"Invalid command.");
+                    }
+                }
+                else
+                {
+                    AddConsoleLine($"Invalid command.");
+                }
+
+                break;
             }
-            else
-            {
-                AddConsoleLine($"Invalid command.","");
-            }
-        }
-        else
-        {
-            AddConsoleLine($"Invalid command.","");
         }
     }
 

@@ -24,12 +24,14 @@ public class ReceptorController : MonoBehaviour
         MainFrame.GetSingleton().AddNewReceptor(this);
     }
 
-    public void Initialize(List<KeyCode> keys)
+    public void Initialize(List<KeyCodePair> keys)
     {
         commandKeys = new List<KeyCodeDirectionPair>();
         keys.ForEach(key =>
         {
-            commandKeys.Add(new KeyCodeDirectionPair(key, RandomPointUtils.GenerateRandomDirection2Din3D()));
+            var direction = RandomPointUtils.GenerateRandomDirection2Din3D();
+            commandKeys.Add(new KeyCodeDirectionPair(key.One, direction));
+            commandKeys.Add(new KeyCodeDirectionPair(key.Two, -direction));
         });
     }
 
@@ -56,6 +58,17 @@ public class ReceptorController : MonoBehaviour
             commands += $"{commandKey.One.ToString()}  | ";
         });
         commands = commands[..^4];
+        return commands;
+    }
+
+    public string ToSmallString()
+    {
+        var commands = "";
+        commandKeys.ForEach(commandKey =>
+        {
+            commands += $"{commandKey.One.ToString()}|";
+        });
+        commands = commands[..^1];
         return commands;
     }
 }

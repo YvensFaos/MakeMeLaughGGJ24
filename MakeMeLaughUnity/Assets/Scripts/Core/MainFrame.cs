@@ -43,6 +43,8 @@ public class MainFrame : WeakSingleton<MainFrame>
    private BoxCollider2D spawnArea;
    [SerializeField] 
    private Transform spawnParent;
+   [SerializeField] 
+   private GameObject overlayPanel;
 
    [Header("Databases")] 
    [SerializeField] 
@@ -92,7 +94,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       }
    }
 
-   private bool TrySpawnReceptor(int amount, out int generatedAmount)
+   public bool TrySpawnReceptor(int amount, out int generatedAmount)
    {
       generatedAmount = 0;
       
@@ -123,7 +125,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       var receptorController = Instantiate(receptorPrefab, new Vector3(position.x, position.y, 0.0f), Quaternion.identity);
 
       var numberOfKeys = (int) RandomChanceUtils.GetRandomInRange(keyControllerAmount);
-      var keys = new List<KeyCode>();
+      var keys = new List<KeyCodePair>();
       for (var i = 0; i < numberOfKeys; i++)
       {
          keys.Add(keyInputDatabase.GetRandomKeyInput());
@@ -132,9 +134,15 @@ public class MainFrame : WeakSingleton<MainFrame>
 
       spawnParent.SetParent(spawnParent);
       Console().AddConsoleLine("Receptor Installed.", "$");
+      Console().AddConsoleLine(receptorController.ToSmallString());
       Console().AddConsoleLine($"Data.", "$");
    }
 
+   public void ToggleOverlayPanel()
+   {
+      overlayPanel.SetActive(!overlayPanel.activeSelf);
+   }
+   
    public int ReceptorCount() => currentReceptors.Count;
    public PlayerLevelSO CurrentPlayerLevel() => playerLevel;
    public ConsoleController Console() => console;

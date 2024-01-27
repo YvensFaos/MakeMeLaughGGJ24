@@ -8,11 +8,11 @@ namespace Core
     public class ReceptorKeyInputDatabase : ScriptableObject
     {
         [SerializeField] 
-        private List<KeyCode> keyInputs;
+        private List<KeyCodePair> keyInputs;
 
-        public KeyCode GetRandomKeyInput()
+        public KeyCodePair GetRandomKeyInput()
         {
-            return RandomHelper<KeyCode>.GetRandomFromList(keyInputs);
+            return RandomHelper<KeyCodePair>.GetRandomFromList(keyInputs);
         }
     }
 }
