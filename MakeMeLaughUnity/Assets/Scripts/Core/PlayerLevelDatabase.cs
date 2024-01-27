@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
+using Utils;
 
 namespace Core
 {
@@ -10,20 +10,34 @@ namespace Core
     {
         [SerializeField]
         private List<PlayerLevelScorePair> playerLevelScore;
-
+        private Stack<PlayerLevelScorePair> playerLevelScoreStack;
+        
         public PlayerLevelScorePair GetCurrentPlayerLevel(int maxScore)
         {
-            if (maxScore >= playerLevelScore[^1].Two && playerLevelScore[^1].IsFinalLevel())
+            if (playerLevelScoreStack == null)
             {
-                return playerLevelScore[^1];
-            }
-            
-            foreach (var levelScorePair in playerLevelScore.Where(levelScorePair => maxScore < levelScorePair.Two ))
-            {
-                return levelScorePair;
+                InitiatePlayerScoreStack();
             }
 
-            return playerLevelScore[0];
+            var peek = playerLevelScoreStack.Peek();
+            if (peek.IsFinalLevel() || maxScore < peek.Two)
+            {
+                return peek;
+            }
+            
+            playerLevelScoreStack.Pop();
+            return playerLevelScoreStack.Peek();
+        }
+
+        private void InitiatePlayerScoreStack()
+        {
+            Sort();
+            playerLevelScoreStack = new Stack<PlayerLevelScorePair>();
+            for (var i = playerLevelScore.Count -1; i >= 0; i--)
+            {
+                playerLevelScoreStack.Push(playerLevelScore[i]);
+                DebugUtils.DebugLogMsg($"[{i}]: {playerLevelScore[i].One.name}.");
+            }
         }
         
         [Button("Sort")]

@@ -15,10 +15,12 @@ public class MainFrame : WeakSingleton<MainFrame>
    private PlayerLevelScorePair playerLevel;
    [SerializeField, ReadOnly]
    private int dataCollected;
-   [SerializeField]
+   [SerializeField, ReadOnly]
    private int currentData;
    [SerializeField] 
-   private float threatLevel;
+   private int threatLevel;
+   [SerializeField, ReadOnly] 
+   private int currentThreatLevel;
    [SerializeField]
    private float levelUpRatio;
 
@@ -55,6 +57,8 @@ public class MainFrame : WeakSingleton<MainFrame>
    private TMP_Text dataText;
    [SerializeField] 
    private Image levelProgressImage;
+   [SerializeField] 
+   private ThreatLevelController threatLevelController;
 
    [Header("Databases")] 
    [SerializeField] 
@@ -65,6 +69,7 @@ public class MainFrame : WeakSingleton<MainFrame>
    private ReceptorKeyInputDatabase keyInputDatabase;
 
    private Tweener playerLevelTweener;
+   private int highscore;
 
    private void Start()
    {
@@ -72,6 +77,8 @@ public class MainFrame : WeakSingleton<MainFrame>
       playerLevelText.text = $"LVL: {playerLevel.One.name}";
       dataText.text = $"<b>D:</b>{currentData}";
       levelProgressImage.fillAmount = 0.0f;
+      currentThreatLevel = threatLevel;
+      threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
    }
 
    public void AddNewReceptor(ReceptorController newReceptor)
@@ -81,14 +88,23 @@ public class MainFrame : WeakSingleton<MainFrame>
    
    public void CollectData(DataPackageController data)
    {
+      highscore += data.DataValue();
+         
       dataCollected += data.DataValue();
       levelUpRatio = (float) dataCollected / playerLevel.Two;
       
       playerLevelTweener?.Kill();
       playerLevelTweener = levelProgressImage.DOFillAmount(Mathf.Clamp01(levelUpRatio), 0.2f);   
+      
       if (levelUpRatio >= 1.0f)
       {
-         playerLevel = playerLevelDatabase.GetCurrentPlayerLevel(dataCollected);   
+         var oldMax = playerLevel.Two;
+         playerLevel = playerLevelDatabase.GetCurrentPlayerLevel(dataCollected);
+         dataCollected -= oldMax;
+         DebugUtils.DebugLogMsg($"Level Up! Level now is {playerLevel.One.name}");
+         playerLevelText.text = $"LVL: {playerLevel.One.name}";
+         playerLevelTweener.Kill();
+         levelProgressImage.fillAmount = 0.0f;
       }
 
       currentData += data.DataValue();
@@ -138,7 +154,6 @@ public class MainFrame : WeakSingleton<MainFrame>
          SpawnReceptor();
          generatedAmount++;
       }
-
       return true;
    }
 

@@ -2669,6 +2669,7 @@ GameObject:
   - component: {fileID: 1043980323}
   - component: {fileID: 1043980325}
   - component: {fileID: 1043980324}
+  - component: {fileID: 1043980326}
   m_Layer: 5
   m_Name: Threat Level
   m_TagString: Untagged
@@ -2708,7 +2709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.06607044, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2733,6 +2734,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043980322}
   m_CullTransparentMesh: 1
+--- !u!114 &1043980326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043980322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787f8412bde1543a294e60a29cb912dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threatLevelImage: {fileID: 1043980324}
+  threatGradient:
+    serializedVersion: 2
+    key0: {r: 0.5188679, g: 0.09545213, b: 0.09545213, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0.8867924, g: 0.3973452, b: 0.04601282, a: 1}
+    key3: {r: 0.9245283, g: 0.8874819, b: 0.30962977, a: 0}
+    key4: {r: 0.06607044, g: 1, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 6746
+    ctime2: 30069
+    ctime3: 44525
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 16769
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 3
 --- !u!1 &1097451238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,6 +2951,26 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
     - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
     - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
+  - one: {fileID: 11400000, guid: 79d6757bf4638473dbca815eecfb8bee, type: 2}
+    two:
+    - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
+    - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
+    - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
+  - one: {fileID: 11400000, guid: 209d5a5e8eb5a4ca8826c6e4e237e9e8, type: 2}
+    two:
+    - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
+    - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
+    - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
+  - one: {fileID: 11400000, guid: c284f4bd1bebc40988c100020dc7a089, type: 2}
+    two:
+    - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
+    - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
+    - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
+  - one: {fileID: 11400000, guid: 3989356c6bc9b481eb85e217d838cc21, type: 2}
+    two:
+    - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
+    - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
+    - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
   defaultEvent: {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
   interval: {x: 5, y: 8}
   onStart: 1
@@ -2965,7 +3029,8 @@ MonoBehaviour:
     finalLevel: 0
   dataCollected: 0
   currentData: 0
-  threatLevel: 0
+  threatLevel: 10
+  currentThreatLevel: 0
   levelUpRatio: 0
   receptorCostMultiplier: 1.5
   currentReceptorCost: 4
@@ -2982,6 +3047,7 @@ MonoBehaviour:
   overlayPanel: {fileID: 1821585009}
   dataText: {fileID: 1997218982}
   levelProgressImage: {fileID: 2141212858}
+  threatLevelController: {fileID: 1043980326}
   playerLevelDatabase: {fileID: 11400000, guid: ad441804e7acc487e852f56fe0088492, type: 2}
   receptorPrefab: {fileID: 4838287161914812917, guid: 9960a9f3773c34373b6bbab939811666, type: 3}
   keyInputDatabase: {fileID: 11400000, guid: eefd9440c676e47549ab2da574cedfc6, type: 2}
