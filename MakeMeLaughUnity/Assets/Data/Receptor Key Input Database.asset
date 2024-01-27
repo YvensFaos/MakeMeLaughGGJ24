@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc276669ace049378fe66e6033343743, type: 3}
+  m_Name: Receptor Key Input Database
+  m_EditorClassIdentifier: 
+  keyInputs: 310000003200000061000000640000007700000073000000140100001301000011010000120100006a0000006c0000006b00000069000000300100002f010000
