@@ -16,6 +16,8 @@ public class MainFrame : WeakSingleton<MainFrame>
    [SerializeField]
    private int currentData;
 
+   [SerializeField] private float threatLevel;
+
    [Header("Controls")] 
    [SerializeField]
    private float receptorCostMultiplier;

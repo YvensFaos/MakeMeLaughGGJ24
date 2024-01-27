@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using Utils;
@@ -21,6 +22,13 @@ namespace Core
         private bool generateRandomData;
         [SerializeField, ShowIf("generateRandomData")]
         private DataPackageController data;
+
+        [Header("Random Comment")] 
+        [SerializeField]
+        private bool generateRandomComment;
+        [SerializeField, ShowIf("generateRandomComment")]
+        private List<string> possibleComments;
+
         
         //TODO add virus and issues
         //TODO add pop up
@@ -45,6 +53,11 @@ namespace Core
                 var randomDirectionVec3 = new Vector3(randomDirection.x, randomDirection.y, 0.0f);
                 newData.Initialize(randomDirectionVec3, Random.Range(0.5f, 2.0f), 1);
                 MainFrame.GetSingleton().Console().AddConsoleLine("Data Leaked.", "#");
+            }
+
+            if (generateRandomComment)
+            {
+                MainFrame.GetSingleton().Console().AddConsoleLine(RandomHelper<string>.GetRandomFromList(possibleComments), "?");
             }
         }
         
