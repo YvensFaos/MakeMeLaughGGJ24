@@ -60,7 +60,7 @@ namespace Core
                 MainFrame.GetSingleton().Console().AddConsoleLine(RandomHelper<string>.GetRandomFromList(possibleComments), "?");
             }
         }
-        
+
         public int GetChance() => chance;
     }
 }

@@ -189,6 +189,9 @@ MonoBehaviour:
   body: {fileID: 3081712395442357591}
   notifiers:
   - {fileID: 2163441635980754974}
+  borderLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &2163441635980754974
 MonoBehaviour:
   m_ObjectHideFlags: 0

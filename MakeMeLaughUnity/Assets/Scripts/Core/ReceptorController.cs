@@ -3,16 +3,18 @@ using Core;
 using UnityEngine;
 using Utils;
 
-public class ReceptorController : MonoBehaviour
+public class ReceptorController : AgnosticCollisionSolver
 {
     [SerializeField]
     private List<KeyCodeDirectionPair> commandKeys;
     [SerializeField]
     private float force = 20;
-    [SerializeField] 
+    [SerializeField]
     private Rigidbody body;
-    [SerializeField] 
+    [SerializeField]
     private List<CommandNotifier> notifiers;
+    [SerializeField]
+    private LayerMask borderLayer;
 
     private void Awake()
     {
@@ -70,5 +72,12 @@ public class ReceptorController : MonoBehaviour
         });
         commands = commands[..^1];
         return commands;
+    }
+
+    protected override void Solve(GameObject collidedWith)
+    {
+        DebugUtils.DebugLogMsg($"Collide with {collidedWith.name}");
+        if (!LayerHelper.CheckLayer(borderLayer, collidedWith.layer)) return;
+        MainFrame.GetSingleton().DestroyReceptor(this);
     }
 }

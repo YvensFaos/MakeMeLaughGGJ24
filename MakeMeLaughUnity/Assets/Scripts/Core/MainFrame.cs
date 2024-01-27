@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cinemachine;
 using Core;
@@ -70,6 +71,7 @@ public class MainFrame : WeakSingleton<MainFrame>
 
    private Tweener playerLevelTweener;
    private int highscore;
+   public event Action gameOverEvent;
 
    private void Start()
    {
@@ -84,6 +86,64 @@ public class MainFrame : WeakSingleton<MainFrame>
    public void AddNewReceptor(ReceptorController newReceptor)
    {
       currentReceptors.Add(newReceptor);
+   }
+
+   public void DestroyReceptor(ReceptorController lostReceptor)
+   {
+      void GameOverConsoleText()
+      {
+         Console().AddConsoleLine("U R COMPROMISED");
+         Console().AddConsoleLine("+___+");
+         Console().AddConsoleLine("HA HA HA HA");
+         Console().AddConsoleLine("U R COMPROMISED");
+         Console().AddConsoleLine("HA HA HA HA");
+         Console().AddConsoleLine("+___+");
+         Console().AddConsoleLine($"Final high score: {highscore}.");
+         Console().AddConsoleLine("DON T MAKE ME LAUGH");
+         Console().AddConsoleLine("+___+");
+         Console().AddConsoleLine("File > Reset");
+         Console().AddConsoleLine("File > Quit");
+         Console().AddConsoleLine("+___+");
+         
+         gameOverEvent.Invoke();
+      }
+
+      void RemoveReceptor(ReceptorController receptor)
+      {
+         currentReceptors.Remove(receptor);
+         Destroy(receptor.gameObject);
+         
+         Console().AddConsoleLine("+___+");
+         Console().AddConsoleLine("Receptor lost.");
+      }
+
+      RemoveReceptor(lostReceptor);
+      
+      if (currentReceptors.Count == 0)
+      {
+         //Game Over
+         currentThreatLevel = 0;
+         threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
+         Console().AddConsoleLine("+___+");
+         Console().AddConsoleLine("No more receptors.");
+         GameOverConsoleText();
+      }
+      else
+      {
+         currentThreatLevel--;
+         threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
+         if (currentThreatLevel > 0) return;
+
+         foreach (var receptor in currentReceptors)
+         {
+            RemoveReceptor(receptor);
+         }
+         
+         //Game Over
+         Console().AddConsoleLine("+___+");
+         Console().AddConsoleLine("Threat level too high.");
+         GameOverConsoleText();
+      }
    }
    
    public void CollectData(DataPackageController data)

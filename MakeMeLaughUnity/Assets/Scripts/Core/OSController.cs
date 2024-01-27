@@ -26,6 +26,7 @@ namespace Core
         private void Start()
         {
             osEventsPerLevel.ForEach(playerLevelOSEventListPair => playerLevelOSEventListPair.GenerateTupleList());
+            MainFrame.GetSingleton().gameOverEvent += GameOver;
             
             if (onStart)
             {
@@ -62,6 +63,13 @@ namespace Core
             {
                 DebugUtils.DebugLogErrorMsg($"Player Level Not Found! {level}");
             }
+        }
+        
+        
+        private void GameOver()
+        {
+            executing = false;
+            StopAllCoroutines();
         }
     }
 }
