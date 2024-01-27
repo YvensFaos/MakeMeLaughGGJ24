@@ -58,8 +58,10 @@ public class MainFrame : WeakSingleton<MainFrame>
    private TMP_Text dataText;
    [SerializeField] 
    private Image levelProgressImage;
-   [SerializeField] 
+   [SerializeField]
    private ThreatLevelController threatLevelController;
+   [SerializeField]
+   private Material mainGameMaterial;
 
    [Header("Databases")] 
    [SerializeField] 
@@ -82,6 +84,10 @@ public class MainFrame : WeakSingleton<MainFrame>
       levelProgressImage.fillAmount = 0.0f;
       currentThreatLevel = threatLevel;
       threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
+      
+      mainGameMaterial.SetColor("_ScreenColor", Color.white);
+      mainGameMaterial.SetColor("_AdditiveColor", Color.black);
+      mainGameMaterial.SetInt("_ByPass", 0);
    }
 
    public void AddNewReceptor(ReceptorController newReceptor)
@@ -91,7 +97,7 @@ public class MainFrame : WeakSingleton<MainFrame>
 
    public void DestroyReceptor(ReceptorController lostReceptor, int threatDamage = 1)
    {
-      void GameOverConsoleText()
+      void GameOverConsoleText(Tweener damageTween)
       {
          Console().AddConsoleLine("U R COMPROMISED");
          Console().AddConsoleLine("+___+");
@@ -107,6 +113,10 @@ public class MainFrame : WeakSingleton<MainFrame>
          Console().AddConsoleLine("+___+");
          
          gameOverEvent.Invoke();
+         damageTween.Kill();
+         AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor",
+            new Vector4(0.4433962f, 0.04392132f, 0.04392132f, 1.0f),
+            0.2f, () => { });
       }
 
       void RemoveReceptor(ReceptorController receptor)
@@ -117,9 +127,10 @@ public class MainFrame : WeakSingleton<MainFrame>
          
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("Receptor lost.");
-      }
 
+      }
       RemoveReceptor(lostReceptor);
+      var animateDamageTweener = AnimateDamage();
       
       if (currentReceptors.Count == 0)
       {
@@ -128,7 +139,7 @@ public class MainFrame : WeakSingleton<MainFrame>
          threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("No more receptors.");
-         GameOverConsoleText();
+         GameOverConsoleText(animateDamageTweener);
       }
       else
       {
@@ -139,13 +150,26 @@ public class MainFrame : WeakSingleton<MainFrame>
          foreach (var receptor in currentReceptors)
          {
             RemoveReceptor(receptor);
+            animateDamageTweener.Kill();
+            animateDamageTweener = AnimateDamage();
          }
          
          //Game Over
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("Threat level too high.");
-         GameOverConsoleText();
+         GameOverConsoleText(animateDamageTweener);
       }
+   }
+
+   private Tweener AnimateDamage()
+   {
+      return AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor", new Vector4(0.4433962f, 0.04392132f, 0.04392132f, 1.0f),
+         0.2f,
+         () =>
+         {
+            AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor",
+               new Vector4(0.0f, 0.0f, 0.0f, 1.0f), 0.2f);
+         });
    }
    
    public void CollectData(DataPackageController data)
@@ -246,4 +270,5 @@ public class MainFrame : WeakSingleton<MainFrame>
    public int ReceptorCount() => currentReceptors.Count;
    public PlayerLevelSO CurrentPlayerLevel() => playerLevel.One;
    public ConsoleController Console() => console;
+   public Material MainMaterial() => mainGameMaterial;
 }

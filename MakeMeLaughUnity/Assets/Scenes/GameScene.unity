@@ -3372,6 +3372,7 @@ MonoBehaviour:
   dataText: {fileID: 1997218982}
   levelProgressImage: {fileID: 2141212858}
   threatLevelController: {fileID: 1043980326}
+  mainGameMaterial: {fileID: 2100000, guid: a31e3d31b13bb4207995f4224fe90bd6, type: 2}
   playerLevelDatabase: {fileID: 11400000, guid: ad441804e7acc487e852f56fe0088492, type: 2}
   receptorPrefab: {fileID: 4838287161914812917, guid: 9960a9f3773c34373b6bbab939811666, type: 3}
   keyInputDatabase: {fileID: 11400000, guid: eefd9440c676e47549ab2da574cedfc6, type: 2}
