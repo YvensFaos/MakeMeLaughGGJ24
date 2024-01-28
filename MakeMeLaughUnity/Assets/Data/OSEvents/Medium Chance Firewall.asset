@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 120d6e09d64c487d9fa056e96f45699b, type: 3}
-  m_Name: Low Chance Firewall
+  m_Name: Medium Chance Firewall
   m_EditorClassIdentifier: 
-  chance: 5
+  chance: 15
   generateDataSpawner: 0
   dataSpawner: {fileID: 0}
   generateRandomData: 0

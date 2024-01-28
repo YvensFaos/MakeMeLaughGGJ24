@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 120d6e09d64c487d9fa056e96f45699b, type: 3}
-  m_Name: Low Chance Firewall
+  m_Name: Big Antivirus
   m_EditorClassIdentifier: 
-  chance: 5
+  chance: 20
   generateDataSpawner: 0
-  dataSpawner: {fileID: 0}
+  dataSpawner: {fileID: 3220086261607016805, guid: fd23ddab6ce4a448daf84d951c7da4b3, type: 3}
   generateRandomData: 0
   data: {fileID: 0}
   generateRandomComment: 0
   possibleComments: []
-  generateRandomAntivirus: 0
-  antivirus: {fileID: 0}
-  generateFirewall: 1
-  firewallController: {fileID: 2814645020017296309, guid: 6d46ba59c5da14d2480c97e5e2059146, type: 3}
-  distortView: 1
-  distortToMaterial: {fileID: 2100000, guid: 0fa4821abcb68434e8591f0bd7fbf24a, type: 2}
-  distortionDuration: 7
+  generateRandomAntivirus: 1
+  antivirus: {fileID: 3701609774326529862, guid: 8a256897e379048018bc4c3a3c039f4c, type: 3}
+  generateFirewall: 0
+  firewallController: {fileID: 0}
+  distortView: 0
+  distortToMaterial: {fileID: 0}
+  distortionDuration: 0

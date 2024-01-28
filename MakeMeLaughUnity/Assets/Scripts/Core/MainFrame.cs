@@ -61,6 +61,8 @@ public class MainFrame : WeakSingleton<MainFrame>
    [SerializeField]
    private ThreatLevelController threatLevelController;
    [SerializeField]
+   private OSController osController;
+   [SerializeField]
    private Material mainGameMaterial;
    [SerializeField]
    private AudioSource audioPlayer;
@@ -122,6 +124,10 @@ public class MainFrame : WeakSingleton<MainFrame>
 
       var convertedReceptor = RandomHelper<ReceptorController>.GetRandomFromList(currentReceptors);
       ConvertReceptorToGate(convertedReceptor);
+      var vec4 = new Vector4(gateOpenColor.r, gateOpenColor.g, gateOpenColor.b, 1.0f);
+      AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor",
+         vec4,
+         0.5f, () => { });
       return true;
    }
 
@@ -136,6 +142,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       
       currentThreatLevel = Mathf.Clamp(currentThreatLevel + 1, 0, threatLevel);
       threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
+      osController.IncreaseIntervalByMargin(0.25f);
    }
    
    public void DestroyReceptor(ReceptorController lostReceptor, int threatDamage = 1)
@@ -195,6 +202,8 @@ public class MainFrame : WeakSingleton<MainFrame>
       {
          currentThreatLevel -= threatDamage;
          threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
+         osController.ReduceIntervalByMargin(0.25f);
+         
          if (currentThreatLevel > 0) return;
 
          foreach (var receptor in currentReceptors)
@@ -211,6 +220,13 @@ public class MainFrame : WeakSingleton<MainFrame>
          GameOverSendHighScore();
       }
    }
+
+   // public void ThreatLevelIncrease(int threatDamage)
+   // {
+   //    currentThreatLevel -= threatDamage;
+   //    threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
+   //    osController.ReduceIntervalByMargin(0.5f);
+   // }
 
    [Button("Animate Color Test")]
    private void TestAnimateColor()

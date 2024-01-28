@@ -64,7 +64,16 @@ namespace Core
                 DebugUtils.DebugLogErrorMsg($"Player Level Not Found! {level}");
             }
         }
-        
+
+        public void ReduceIntervalByMargin(float margin)
+        {
+            interval.x = Mathf.Max(interval.x - margin, 0.5f);
+        }
+
+        public void IncreaseIntervalByMargin(float margin)
+        {
+            interval.x = Mathf.Min(interval.x + margin, 4.0f);
+        }
         
         private void GameOver()
         {
