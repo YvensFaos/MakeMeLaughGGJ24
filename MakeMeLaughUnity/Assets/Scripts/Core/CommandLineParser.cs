@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Utils;
 
 public class CommandLineParser : MonoBehaviour
@@ -41,6 +42,13 @@ public class CommandLineParser : MonoBehaviour
             case "-h":
                 MainFrame.GetSingleton().ToggleOverlayPanel();
                 break;
+            case "-m":
+                var mutation = MainFrame.GetSingleton().MutateRandomReceptor();
+                if (!mutation)
+                {
+                    AddConsoleLine("Mutation failed.", "!");
+                }
+                break;
             default:
             {
                 if (command.StartsWith("-g"))
@@ -54,8 +62,20 @@ public class CommandLineParser : MonoBehaviour
                         if(success) AddConsoleLine($"return 0;","$");
                         else AddConsoleLine($"return -{Random.Range(0, 6000)};","!");
                     }
+                }
+                else if (command.StartsWith("-m"))
+                {
+                    var regex = new Regex(@"\d+");
+                    var match = regex.Match(command);
+                    if (match.Success)
+                    {
+                        var success = MainFrame.GetSingleton().MutateReceptorByIndex(int.Parse(match.Value));
+                        
+                        if(success) AddConsoleLine($"return 0;","$");
+                        else AddConsoleLine($"return -{Random.Range(0, 6000)};","!");
+                    }
                 } 
-                else if (command.StartsWith("-c"))
+                else if (command.StartsWith("-r"))
                 {
                     //Spawn Receptors
                     var regex = new Regex(@"\d+");
