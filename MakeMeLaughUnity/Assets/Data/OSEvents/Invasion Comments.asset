@@ -25,8 +25,8 @@ MonoBehaviour:
   - SAY NO TO MEMES!
   generateRandomAntivirus: 0
   antivirus: {fileID: 0}
-  generateFirewall: 0
-  firewallController: {fileID: 0}
+  generateFirewall: 1
+  firewallController: {fileID: 5933925763182443936, guid: 8d2fd2a5c423b40519903ef3ec0253b4, type: 3}
   distortView: 0
   distortToMaterial: {fileID: 0}
   distortionDuration: 0
