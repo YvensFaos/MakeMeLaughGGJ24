@@ -20,6 +20,10 @@ public class DataPackageSpawner : MonoBehaviour
     private Vector3 direction;
     [SerializeField]
     private float velocity;
+    [SerializeField] 
+    private bool randomizeDirectionOnStart;
+    [SerializeField] 
+    private bool destroyAfterSpawning = true;
 
     private int internalCount;
     private List<Tuple<DataPackageController, float>> dataTupleList;
@@ -32,6 +36,10 @@ public class DataPackageSpawner : MonoBehaviour
     private void Start()
     {
         ResetSpawning();
+        if (randomizeDirectionOnStart)
+        {
+            direction = RandomPointUtils.GenerateRandomDirection2Din3D();
+        }
         if (onStart)
         {
             StartSpawning();
@@ -64,9 +72,14 @@ public class DataPackageSpawner : MonoBehaviour
             --internalCount;
             var spawnDataController = RandomChancePair<DataPackageController>.GetRandomFromChanceList(dataTupleList, null);
             var newlySpawn = Instantiate(spawnDataController, transform.position, Quaternion.identity);
-            newlySpawn.transform.SetParent(transform);
+            newlySpawn.transform.SetParent(transform.parent);
             newlySpawn.Initialize(direction, velocity);
             yield return new WaitForSeconds(interval);
+        }
+
+        if (destroyAfterSpawning)
+        {
+            Destroy(gameObject, 0.5f);
         }
     }
 

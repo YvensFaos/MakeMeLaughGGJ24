@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WrongAspectRatio 1
+  m_Name: FirewallOn
   m_Shader: {fileID: -6465566751694194690, guid: 14eec6ca12d7f4330a291e51a7f29288, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,13 +42,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _ByPass: 1
-    - _NoiseFactor: 0
-    - _NoiseScale: 0
-    - _NoiseTimeFactor: 0
+    - _NoiseFactor: 0.02
+    - _NoiseScale: 100
+    - _NoiseTimeFactor: 2
     m_Colors:
-    - _AdditiveColor: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
+    - _AdditiveColor: {r: 0.9622642, g: 0.44028127, b: 0.44028127, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ScreenColor: {r: 0.73985404, g: 0.9622642, b: 0.78153616, a: 1}
+    - _ScreenColor: {r: 0.8490566, g: 0.17644008, b: 0.12415449, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7546081253279377236
 MonoBehaviour:

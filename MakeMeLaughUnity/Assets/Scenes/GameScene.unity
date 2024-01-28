@@ -3281,6 +3281,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
     - {fileID: 11400000, guid: 34d1a0ee4c05345c181099ff53d58264, type: 2}
     - {fileID: 11400000, guid: fcf5ce33fdb084b299e9860136b5aad6, type: 2}
+    - {fileID: 11400000, guid: 29f25ee29c5d449ecbd57135f5da5aa4, type: 2}
   - one: {fileID: 11400000, guid: 209d5a5e8eb5a4ca8826c6e4e237e9e8, type: 2}
     two:
     - {fileID: 11400000, guid: a4a9c16578c504dfc9d6dd7b94c2fc7b, type: 2}
@@ -3288,17 +3289,21 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 34d1a0ee4c05345c181099ff53d58264, type: 2}
     - {fileID: 11400000, guid: 08ba15a29567641f2968b1be62635dfd, type: 2}
     - {fileID: 11400000, guid: fcf5ce33fdb084b299e9860136b5aad6, type: 2}
-    - {fileID: 11400000, guid: fcf5ce33fdb084b299e9860136b5aad6, type: 2}
+    - {fileID: 11400000, guid: 972454f67f087434e9e4d779aa1a8ded, type: 2}
+    - {fileID: 11400000, guid: fbf2920f10d394c37a1a4ca854b055fd, type: 2}
   - one: {fileID: 11400000, guid: c284f4bd1bebc40988c100020dc7a089, type: 2}
     two:
-    - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
-    - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
-    - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
+    - {fileID: 11400000, guid: a4a9c16578c504dfc9d6dd7b94c2fc7b, type: 2}
+    - {fileID: 11400000, guid: d5985b627f30145d89150afa33959404, type: 2}
+    - {fileID: 11400000, guid: 972454f67f087434e9e4d779aa1a8ded, type: 2}
+    - {fileID: 11400000, guid: fbf2920f10d394c37a1a4ca854b055fd, type: 2}
+    - {fileID: 11400000, guid: 29f25ee29c5d449ecbd57135f5da5aa4, type: 2}
+    - {fileID: 11400000, guid: 08ba15a29567641f2968b1be62635dfd, type: 2}
   - one: {fileID: 11400000, guid: 3989356c6bc9b481eb85e217d838cc21, type: 2}
     two:
-    - {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
+    - {fileID: 11400000, guid: fbf2920f10d394c37a1a4ca854b055fd, type: 2}
     - {fileID: 11400000, guid: 796d4a5761d4442b393d179fa8f37fbf, type: 2}
-    - {fileID: 11400000, guid: 3602694d7f40b4eee9516301d158cc55, type: 2}
+    - {fileID: 11400000, guid: a4a9c16578c504dfc9d6dd7b94c2fc7b, type: 2}
   defaultEvent: {fileID: 11400000, guid: 71652c0b1ec024a23b0a5a40c812a5f3, type: 2}
   interval: {x: 5, y: 8}
   onStart: 1
@@ -3386,6 +3391,8 @@ MonoBehaviour:
   bonusSound: {fileID: 8300000, guid: 7ab402a8f9cc347699d34b59b1671894, type: 3}
   collectSound: {fileID: 8300000, guid: 7aac2aa387ad847e0bc68a5e80023420, type: 3}
   receptorSound: {fileID: 8300000, guid: 4a09863a4d7864cd6a20e21c043c0e40, type: 3}
+  damageColor: {r: 0, g: 0, b: 0, a: 0}
+  gateOpenColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1195337147
 Transform:
   m_ObjectHideFlags: 0
@@ -5599,6 +5606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288f3a3e2dace4c92a811b9dbb8ad033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consoleObject: {fileID: 1890526029}
   consoleOutput: {fileID: 2129505862}
 --- !u!1 &1894906786
 GameObject:

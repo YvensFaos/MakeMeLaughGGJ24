@@ -26,6 +26,11 @@ public class CommandLineParser : MonoBehaviour
             case "-g":
                 //Open Gate
                 AddConsoleLine("Try to open gate.");
+                var gateOpened = MainFrame.GetSingleton().ConvertRandomReceptorToGate();
+                if (!gateOpened)
+                {
+                    AddConsoleLine("Not enough receptors.", "!");
+                }
                 break;
             case "-h":
                 MainFrame.GetSingleton().ToggleOverlayPanel();

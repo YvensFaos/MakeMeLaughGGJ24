@@ -34,7 +34,13 @@ namespace Core
         [SerializeField] 
         private bool generateRandomAntivirus;
         [SerializeField, ShowIf("generateRandomAntivirus")]
-        private AntivirusController antivirus;        
+        private AntivirusController antivirus;  
+        
+        [Header("Firewall")]
+        [SerializeField] 
+        private bool generateFirewall;
+        [SerializeField, ShowIf("generateFirewall")]
+        private FirewallController firewallController;
         
         [Header("Distort View")]
         [SerializeField] 
@@ -44,7 +50,6 @@ namespace Core
         [SerializeField, ShowIf("distortView")]
         private float distortionDuration;
         
-        //TODO add issues
         //TODO add pop up
 
         public void Execute(BoxCollider2D spawnArea, Transform spawnParent, MonoBehaviour caller)
@@ -70,7 +75,7 @@ namespace Core
 
             if (generateRandomComment)
             {
-                MainFrame.GetSingleton().Console().AddConsoleLine(RandomHelper<string>.GetRandomFromList(possibleComments), "?");
+                MainFrame.GetSingleton().Console().AddConsoleLine(RandomHelper<string>.GetRandomFromList(possibleComments), "?", true);
             }
             
             if (generateRandomAntivirus)
@@ -82,6 +87,14 @@ namespace Core
                 var randomDirectionVec3 = new Vector3(randomDirection.x, randomDirection.y, 0.0f);
                 antivirusController.Initialize(randomDirectionVec3, Random.Range(0.5f, 2.0f));
                 MainFrame.GetSingleton().Console().AddConsoleLine("Antivirus Detected.", "#");
+            }
+            
+            if (generateFirewall)
+            {
+                var position = RandomPointUtils.GetRandomPointWithBox2D(spawnArea);
+                var firewall = Instantiate(firewallController, new Vector3(position.x, position.y, 0.0f), Quaternion.identity);
+                firewall.transform.SetParent(spawnParent);
+                MainFrame.GetSingleton().Console().AddConsoleLine("FIREWALL!.", "#");
             }
 
             if (distortView)

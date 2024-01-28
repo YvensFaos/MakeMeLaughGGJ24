@@ -15,6 +15,8 @@ public class ReceptorController : AgnosticCollisionSolver
     private List<CommandNotifier> notifiers;
     [SerializeField]
     private LayerMask borderLayer;
+    [SerializeField] 
+    private GameObject gateObject;
 
     private void Awake()
     {
@@ -79,5 +81,12 @@ public class ReceptorController : AgnosticCollisionSolver
         DebugUtils.DebugLogMsg($"Collide with {collidedWith.name}");
         if (!LayerHelper.CheckLayer(borderLayer, collidedWith.layer)) return;
         MainFrame.GetSingleton().DestroyReceptor(this);
+    }
+
+    public void ConvertToGate()
+    {
+        var gate = Instantiate(gateObject, transform.position, Quaternion.identity);
+        gate.transform.SetParent(transform.parent);
+        MainFrame.GetSingleton().DestroyReceptor(this, 0);
     }
 }

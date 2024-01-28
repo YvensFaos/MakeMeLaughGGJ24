@@ -20,11 +20,11 @@ MonoBehaviour:
     two: 60
     finalLevel: 0
   - one: {fileID: 11400000, guid: 209d5a5e8eb5a4ca8826c6e4e237e9e8, type: 2}
-    two: 100
+    two: 80
     finalLevel: 0
   - one: {fileID: 11400000, guid: c284f4bd1bebc40988c100020dc7a089, type: 2}
-    two: 150
+    two: 100
     finalLevel: 0
   - one: {fileID: 11400000, guid: 3989356c6bc9b481eb85e217d838cc21, type: 2}
-    two: 500
+    two: 120
     finalLevel: 1

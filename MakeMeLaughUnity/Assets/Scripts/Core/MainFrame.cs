@@ -79,6 +79,11 @@ public class MainFrame : WeakSingleton<MainFrame>
    [SerializeField] private AudioClip collectSound;
    [SerializeField] private AudioClip receptorSound;
 
+   [Header("Colors")] 
+   [SerializeField] private Color damageColor;
+   [SerializeField] private Color gateOpenColor;
+   
+
    private Tweener playerLevelTweener;
    private int highscore;
    public event Action gameOverEvent;
@@ -111,17 +116,39 @@ public class MainFrame : WeakSingleton<MainFrame>
       currentReceptors.Add(newReceptor);
    }
 
+   public bool ConvertRandomReceptorToGate()
+   {
+      if (currentReceptors.Count <= 1) return false;
+
+      var convertedReceptor = RandomHelper<ReceptorController>.GetRandomFromList(currentReceptors);
+      ConvertReceptorToGate(convertedReceptor);
+      return true;
+   }
+
+   private void ConvertReceptorToGate(ReceptorController receptorController)
+   {
+      currentReceptors.Remove(receptorController);
+      impulseSource.GenerateImpulse();
+      receptorController.ConvertToGate();
+      Destroy(receptorController.gameObject, 0.1f);
+      Console().AddConsoleLine("Gate opened.", "$");
+      audioPlayer.PlayOneShot(bonusSound);
+      
+      currentThreatLevel = Mathf.Clamp(currentThreatLevel + 1, 0, threatLevel);
+      threatLevelController.UpdateThreatLevel((float) currentThreatLevel / threatLevel);
+   }
+   
    public void DestroyReceptor(ReceptorController lostReceptor, int threatDamage = 1)
    {
       void GameOverConsoleText(Tweener damageTween)
       {
-         Console().AddConsoleLine("U R COMPROMISED");
+         Console().AddConsoleLine("U R COMPROMISED", "", true);
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("HA HA HA HA");
          Console().AddConsoleLine("U R COMPROMISED");
          Console().AddConsoleLine("HA HA HA HA");
          Console().AddConsoleLine("+___+");
-         Console().AddConsoleLine($"Final high score: {highscore}.");
+         Console().AddConsoleLine($"Final Score: {highscore}.");
          Console().AddConsoleLine("DON T MAKE ME LAUGH");
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("File > Reset");
@@ -131,7 +158,7 @@ public class MainFrame : WeakSingleton<MainFrame>
          gameOverEvent.Invoke();
          damageTween.Kill();
          AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor",
-            new Vector4(0.4433962f, 0.04392132f, 0.04392132f, 1.0f),
+            damageColor,
             0.2f, () => { });
       }
 
@@ -146,7 +173,7 @@ public class MainFrame : WeakSingleton<MainFrame>
          audioPlayer.PlayOneShot(damageSound);
       }
       RemoveReceptor(lostReceptor);
-      var animateDamageTweener = AnimateDamage();
+      var animateDamageTweener = AnimateDamage(damageColor);
       
       if (currentReceptors.Count == 0)
       {
@@ -167,7 +194,7 @@ public class MainFrame : WeakSingleton<MainFrame>
          {
             RemoveReceptor(receptor);
             animateDamageTweener.Kill();
-            animateDamageTweener = AnimateDamage();
+            animateDamageTweener = AnimateDamage(damageColor);
          }
          
          //Game Over
@@ -177,9 +204,11 @@ public class MainFrame : WeakSingleton<MainFrame>
       }
    }
 
-   private Tweener AnimateDamage()
+   //new Vector4(0.4433962f, 0.04392132f, 0.04392132f, 1.0f),
+   
+   private Tweener AnimateDamage(Color toColor)
    {
-      return AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor", new Vector4(0.4433962f, 0.04392132f, 0.04392132f, 1.0f),
+      return AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor", toColor,
          0.2f,
          () =>
          {
