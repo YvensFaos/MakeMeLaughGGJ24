@@ -1,7 +1,6 @@
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
-using Utils;
 
 public class MainSceneController : MonoBehaviour
 {

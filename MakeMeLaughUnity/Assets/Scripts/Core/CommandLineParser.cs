@@ -1,8 +1,7 @@
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Utils;
+using UnityEngine.SceneManagement;
 
 public class CommandLineParser : MonoBehaviour
 {
@@ -48,6 +47,9 @@ public class CommandLineParser : MonoBehaviour
                 {
                     AddConsoleLine("Mutation failed.", "!");
                 }
+                break;
+            case "-q":
+                SceneManager.LoadScene("MainScene");
                 break;
             default:
             {
