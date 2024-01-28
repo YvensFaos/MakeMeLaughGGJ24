@@ -43,6 +43,11 @@ namespace Utils
                    j >= 0 && j < grid.GetLength(1);
         }
 
+        public static int MakeValidIndex<T>(ref List<T> list, int index)
+        {
+            return Mathf.Clamp(index, 0, list.Count - 1);
+        }
+
         public static void MakeValidIndex<T>(ref T[,] grid, ref int i, ref int j)
         {
             i = Mathf.Clamp(i, 0, grid.GetLength(0));

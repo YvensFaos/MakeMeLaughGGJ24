@@ -131,6 +131,19 @@ public class MainFrame : WeakSingleton<MainFrame>
       return true;
    }
 
+   public bool ConvertReceptorToGateByIndex(int index)
+   {
+      if (currentReceptors.Count <= 1) return false;
+      
+      index = AssessUtils.MakeValidIndex(ref currentReceptors, index);
+      ConvertReceptorToGate(currentReceptors[index]);
+      var vec4 = new Vector4(gateOpenColor.r, gateOpenColor.g, gateOpenColor.b, 1.0f);
+      AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor",
+         vec4,
+         0.5f, () => { });
+      return true;
+   }
+
    private void ConvertReceptorToGate(ReceptorController receptorController)
    {
       currentReceptors.Remove(receptorController);

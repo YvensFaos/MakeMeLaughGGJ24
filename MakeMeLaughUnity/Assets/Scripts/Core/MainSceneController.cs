@@ -1,5 +1,7 @@
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using Utils;
 
 public class MainSceneController : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class MainSceneController : MonoBehaviour
     private TMP_Text consoleInputName;
     [SerializeField]
     private TMP_Text consoleText;
+    [SerializeField]
+    private TMP_InputField consoleInputField;
 
     [SerializeField] private Material mainMaterial;
     [SerializeField] private Material resetMaterial;
@@ -18,6 +22,8 @@ public class MainSceneController : MonoBehaviour
 
     public void SetUserName()
     {
+        if (!Input.GetKey(KeyCode.Return)) return;
+        
         var newPlayerName = consoleInputName.text.Trim();
         if (newPlayerName.Length <= 0)
         {
@@ -28,5 +34,12 @@ public class MainSceneController : MonoBehaviour
         consoleText.text += $"User name set to: {newPlayerName} \r\n\r\n";
         LootLockerSingleton.GetSingleton().SetPlayerName(newPlayerName);
         consoleInputName.text = "";
+        consoleInputField.text = "";
+    }
+
+    [Button("Reset Material")]
+    private void ResetMaterial()
+    {
+        mainMaterial.CopyPropertiesFromMaterial(resetMaterial);
     }
 }

@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using Utils;
 
 public class CommandLineParser : MonoBehaviour
 {
@@ -8,13 +9,18 @@ public class CommandLineParser : MonoBehaviour
     private ConsoleController console;
     [SerializeField] 
     private TMP_Text consoleInput;
+    [SerializeField] 
+    private TMP_InputField consoleInputField;
     
     public void GetCommand(string command)
     {
+        if (!Input.GetKey(KeyCode.Return)) return;
+        
         console.gameObject.SetActive(true);
         AddConsoleLine(command,">");
         ParseCommand(command);
         consoleInput.text = "";
+        consoleInputField.text = "";
     }
 
     private void ParseCommand(string command)
@@ -37,7 +43,19 @@ public class CommandLineParser : MonoBehaviour
                 break;
             default:
             {
-                if (command.StartsWith("-c"))
+                if (command.StartsWith("-g"))
+                {
+                    var regex = new Regex(@"\d+");
+                    var match = regex.Match(command);
+                    if (match.Success)
+                    {
+                        var success = MainFrame.GetSingleton().ConvertReceptorToGateByIndex(int.Parse(match.Value));
+                        
+                        if(success) AddConsoleLine($"return 0;","$");
+                        else AddConsoleLine($"return -{Random.Range(0, 6000)};","!");
+                    }
+                } 
+                else if (command.StartsWith("-c"))
                 {
                     //Spawn Receptors
                     var regex = new Regex(@"\d+");
