@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLevelScore:
   - one: {fileID: 11400000, guid: c9c23dc9aa8f440158123adcb1447561, type: 2}
-    two: 4
+    two: 10
     finalLevel: 0
   - one: {fileID: 11400000, guid: 79d6757bf4638473dbca815eecfb8bee, type: 2}
     two: 60

@@ -62,7 +62,9 @@ public class MainFrame : WeakSingleton<MainFrame>
    private ThreatLevelController threatLevelController;
    [SerializeField]
    private Material mainGameMaterial;
-
+   [SerializeField]
+   private AudioSource audioPlayer;
+   
    [Header("Databases")] 
    [SerializeField] 
    private PlayerLevelDatabase playerLevelDatabase;
@@ -70,6 +72,12 @@ public class MainFrame : WeakSingleton<MainFrame>
    private ReceptorController receptorPrefab;
    [SerializeField] 
    private ReceptorKeyInputDatabase keyInputDatabase;
+
+   [Header("Sounds")] 
+   [SerializeField] private AudioClip damageSound;
+   [SerializeField] private AudioClip bonusSound;
+   [SerializeField] private AudioClip collectSound;
+   [SerializeField] private AudioClip receptorSound;
 
    private Tweener playerLevelTweener;
    private int highscore;
@@ -135,7 +143,7 @@ public class MainFrame : WeakSingleton<MainFrame>
          
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("Receptor lost.");
-
+         audioPlayer.PlayOneShot(damageSound);
       }
       RemoveReceptor(lostReceptor);
       var animateDamageTweener = AnimateDamage();
@@ -199,12 +207,14 @@ public class MainFrame : WeakSingleton<MainFrame>
          playerLevelText.text = $"LVL: {playerLevel.One.name}";
          playerLevelTweener.Kill();
          levelProgressImage.fillAmount = 0.0f;
+         audioPlayer.PlayOneShot(bonusSound);
       }
 
       currentData += data.DataValue();
       dataText.text = $"<b>D:</b>{currentData}";
       dataReceptorRatio = (float) currentData / currentReceptorCost;
       loaderController.UpdateRatio(dataReceptorRatio);
+      audioPlayer.PlayOneShot(collectSound);
    }
 
    public string GetListOfReceptorCommands()
@@ -268,6 +278,7 @@ public class MainFrame : WeakSingleton<MainFrame>
       Console().AddConsoleLine("Receptor Installed.", "$");
       Console().AddConsoleLine(receptorController.ToSmallString());
       Console().AddConsoleLine($"Data.", "$");
+      audioPlayer.PlayOneShot(receptorSound);
    }
 
    public void ToggleOverlayPanel()
