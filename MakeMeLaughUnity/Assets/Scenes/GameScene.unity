@@ -2877,8 +2877,8 @@ MonoBehaviour:
   bonusSound: {fileID: 8300000, guid: 7ab402a8f9cc347699d34b59b1671894, type: 3}
   collectSound: {fileID: 8300000, guid: 7aac2aa387ad847e0bc68a5e80023420, type: 3}
   receptorSound: {fileID: 8300000, guid: 4a09863a4d7864cd6a20e21c043c0e40, type: 3}
-  damageColor: {r: 0, g: 0, b: 0, a: 0}
-  gateOpenColor: {r: 0, g: 0, b: 0, a: 0}
+  damageColor: {r: 0.4433962, g: 0.04392132, b: 0.04392132, a: 1}
+  gateOpenColor: {r: 0.34242615, g: 0.7877113, b: 0.8962264, a: 1}
 --- !u!4 &1195337147
 Transform:
   m_ObjectHideFlags: 0

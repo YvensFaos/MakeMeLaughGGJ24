@@ -157,8 +157,9 @@ public class MainFrame : WeakSingleton<MainFrame>
          
          gameOverEvent.Invoke();
          damageTween.Kill();
+         var vec4 = new Vector4(damageColor.r, damageColor.g, damageColor.b, 1.0f);
          AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor",
-            damageColor,
+            vec4,
             0.2f, () => { });
       }
 
@@ -211,11 +212,17 @@ public class MainFrame : WeakSingleton<MainFrame>
       }
    }
 
-   //new Vector4(0.4433962f, 0.04392132f, 0.04392132f, 1.0f),
+   [Button("Animate Color Test")]
+   private void TestAnimateColor()
+   {
+      DebugUtils.DebugLogMsg("Animate test");
+      AnimateDamage(damageColor);
+   }
    
    private Tweener AnimateDamage(Color toColor)
    {
-      return AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor", toColor,
+      var vec4 = new Vector4(toColor.r, toColor.g, toColor.b, 1.0f);
+      return AnimateMaterialProperty.AnimateProperty(mainGameMaterial, "_AdditiveColor", vec4,
          0.2f,
          () =>
          {
