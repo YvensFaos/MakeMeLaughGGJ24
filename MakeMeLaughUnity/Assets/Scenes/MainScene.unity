@@ -2341,8 +2341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 
-  leaderboardKey: 19982
+  leaderboardKey: 19984
   playerName: 
+  isOn: 0
 --- !u!1 &1349986644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3337,6 +3338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consoleInputName: {fileID: 769759028351311926}
   consoleText: {fileID: 5216987860127420845}
+  mainMaterial: {fileID: 2100000, guid: a31e3d31b13bb4207995f4224fe90bd6, type: 2}
+  resetMaterial: {fileID: 2100000, guid: 2995577f3aed04effb1b2a8ad024ef4b, type: 2}
 --- !u!4 &1726593152
 Transform:
   m_ObjectHideFlags: 0
@@ -5334,8 +5337,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 989, y: 33}
-  m_SizeDelta: {x: -989, y: -533}
+  m_AnchoredPosition: {x: 700, y: 33}
+  m_SizeDelta: {x: -700, y: -533}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &3994467890241286513
 MonoBehaviour:
@@ -5647,7 +5650,10 @@ MonoBehaviour:
     Welcome.
 
 
-    Type your user name:'
+    Type your user name:
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b954d3fbd8a2647ed9c7ce1f3bfb8151, type: 2}
   m_sharedMaterial: {fileID: -7942819742396768686, guid: b954d3fbd8a2647ed9c7ce1f3bfb8151, type: 2}

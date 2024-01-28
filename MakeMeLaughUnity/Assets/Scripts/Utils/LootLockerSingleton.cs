@@ -55,10 +55,10 @@ public class LootLockerSingleton : Singleton<LootLockerSingleton>
                 DebugUtils.DebugLogErrorMsg("No high score!");
                 return;
             }
-            var leaderboardText = "";
             var results = new List<string>();
             foreach (var currentEntry in response.items)
             {
+                var leaderboardText = "";
                 leaderboardText += currentEntry.rank + ".";
                 leaderboardText += currentEntry.player.id;
                 leaderboardText += " - ";

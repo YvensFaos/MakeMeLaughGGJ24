@@ -37,12 +37,11 @@ public class HighscoreController : MonoBehaviour
 
     private void GetHighScore()
     {
-        LootLockerSingleton.GetSingleton().GetHighScores((highScores) =>
+        LootLockerSingleton.GetSingleton().GetHighScores(highScores =>
         {
             highScoreText.text = "High Scores: \r\n\r\n";
             highScores.ForEach(highScore =>
             {
-                DebugUtils.DebugLogMsg(highScore);
                 highScoreText.text += highScore + "\r\n\r\n";
             });
         });
