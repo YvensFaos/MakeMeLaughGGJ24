@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 120d6e09d64c487d9fa056e96f45699b, type: 3}
-  m_Name: Underpowered GPU
+  m_Name: Wrong Aspect Leak
   m_EditorClassIdentifier: 
   chance: 15
   generateDataSpawner: 0
   dataSpawner: {fileID: 0}
   generateRandomData: 0
   data: {fileID: 3788921121010629716, guid: 4dd079379e77a44cda3468e082d491fa, type: 3}
-  generateRandomComment: 1
-  possibleComments:
-  - GPU malfunction...
-  - -m to mutate!
-  - M2t4t3
+  generateRandomComment: 0
+  possibleComments: []
   generateRandomAntivirus: 1
-  antivirus: {fileID: 3701609774326529862, guid: 8a256897e379048018bc4c3a3c039f4c, type: 3}
-  generateFirewall: 1
-  firewallController: {fileID: 2814645020017296309, guid: 6d46ba59c5da14d2480c97e5e2059146, type: 3}
+  antivirus: {fileID: 4836662160023155581, guid: b45e5596cdc9d44d9b573a0c271e8496, type: 3}
+  generateFirewall: 0
+  firewallController: {fileID: 0}
   distortView: 1
-  distortToMaterial: {fileID: 2100000, guid: b5d183286a5b74ebd83941e7593407c3, type: 2}
-  distortionDuration: 2
+  distortToMaterial: {fileID: 2100000, guid: dfe802712f0a44ca59678c2f6eb5aa04, type: 2}
+  distortionDuration: 5

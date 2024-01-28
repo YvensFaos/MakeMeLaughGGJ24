@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Suspicious Comments
   m_EditorClassIdentifier: 
   chance: 20
-  generateDataSpawner: 0
-  dataSpawner: {fileID: 0}
+  generateDataSpawner: 1
+  dataSpawner: {fileID: 1254879313494107157, guid: 7a2a8e57bf50944db83167ee64871bc2, type: 3}
   generateRandomData: 0
   data: {fileID: 0}
   generateRandomComment: 1
@@ -23,8 +23,10 @@ MonoBehaviour:
   - '"Is this a NFT?"'
   - Antivirus check...
   - '"???"'
-  generateRandomAntivirus: 0
-  antivirus: {fileID: 0}
+  generateRandomAntivirus: 1
+  antivirus: {fileID: 3701609774326529862, guid: 8a256897e379048018bc4c3a3c039f4c, type: 3}
+  generateFirewall: 1
+  firewallController: {fileID: 2814645020017296309, guid: 6d46ba59c5da14d2480c97e5e2059146, type: 3}
   distortView: 0
   distortToMaterial: {fileID: 0}
   distortionDuration: 0

@@ -6215,6 +6215,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1821585009}
     - target: {fileID: 1405969506172493418, guid: 182b541f2d36f43738b70107d4d2923d, type: 3}
+      propertyPath: mutationColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405969506172493418, guid: 182b541f2d36f43738b70107d4d2923d, type: 3}
+      propertyPath: mutationColor.b
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405969506172493418, guid: 182b541f2d36f43738b70107d4d2923d, type: 3}
+      propertyPath: mutationColor.g
+      value: 0.09794411
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405969506172493418, guid: 182b541f2d36f43738b70107d4d2923d, type: 3}
+      propertyPath: mutationColor.r
+      value: 0.2462373
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405969506172493418, guid: 182b541f2d36f43738b70107d4d2923d, type: 3}
       propertyPath: playerLevelText
       value: 
       objectReference: {fileID: 825464015}

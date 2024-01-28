@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLevelScore:
   - one: {fileID: 11400000, guid: c9c23dc9aa8f440158123adcb1447561, type: 2}
-    two: 10
+    two: 20
     finalLevel: 0
   - one: {fileID: 11400000, guid: 79d6757bf4638473dbca815eecfb8bee, type: 2}
-    two: 60
+    two: 40
     finalLevel: 0
   - one: {fileID: 11400000, guid: 209d5a5e8eb5a4ca8826c6e4e237e9e8, type: 2}
-    two: 80
+    two: 60
     finalLevel: 0
   - one: {fileID: 11400000, guid: c284f4bd1bebc40988c100020dc7a089, type: 2}
-    two: 100
+    two: 60
     finalLevel: 0
   - one: {fileID: 11400000, guid: 3989356c6bc9b481eb85e217d838cc21, type: 2}
-    two: 120
+    two: 80
     finalLevel: 1
