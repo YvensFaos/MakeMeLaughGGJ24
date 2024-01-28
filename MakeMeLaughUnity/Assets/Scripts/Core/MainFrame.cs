@@ -162,6 +162,11 @@ public class MainFrame : WeakSingleton<MainFrame>
             0.2f, () => { });
       }
 
+      void GameOverSendHighScore()
+      {
+         LootLockerSingleton.GetSingleton().SubmitHighScore(highscore, playerLevel.One.name);
+      }
+
       void RemoveReceptor(ReceptorController receptor)
       {
          currentReceptors.Remove(receptor);
@@ -183,6 +188,7 @@ public class MainFrame : WeakSingleton<MainFrame>
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("No more receptors.");
          GameOverConsoleText(animateDamageTweener);
+         GameOverSendHighScore();
       }
       else
       {
@@ -201,6 +207,7 @@ public class MainFrame : WeakSingleton<MainFrame>
          Console().AddConsoleLine("+___+");
          Console().AddConsoleLine("Threat level too high.");
          GameOverConsoleText(animateDamageTweener);
+         GameOverSendHighScore();
       }
    }
 
